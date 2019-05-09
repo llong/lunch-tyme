@@ -1,10 +1,19 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
 import styles from './styles';
-import MapView from 'react-native-maps';
+import MapView , { Marker } from 'react-native-maps';
 import { connect } from 'react-redux';
+import MapIcon from '../../../../assets/icons/icon_map.png';
 
 class DetailsView extends React.Component {
+  static navigationOptions = ({navigation}) => {
+    return {
+      title: 'Lunch Tyme',
+      headerRight: (
+        <Image source={ MapIcon } style={ { marginRight: 12 } } />
+      )
+    };
+  }
   render() {
     const { activeRestaurant: { name, category, location, contact } } = this.props;
     return (
@@ -18,7 +27,13 @@ class DetailsView extends React.Component {
               latitudeDelta: 0.0522,
               longitudeDelta: 0.0421,
             }}
-          />
+          >
+             <Marker
+              coordinate={ {latitude: location.lat, longitude: location.lng } }
+              title={ name }
+              description={ category }
+            />
+          </MapView>
         </View>
         <View style={ styles.detailsHeader }>
           <Text style={ styles.restaurantName } >{ name }</Text>

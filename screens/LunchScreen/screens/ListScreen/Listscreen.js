@@ -1,16 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { TouchableOpacity, FlatList, View, Dimensions } from 'react-native';
+import { TouchableOpacity, FlatList, View, Dimensions, Image } from 'react-native';
 import { bindActionCreators } from 'redux';
 import ListItem from './components/ListItem';
 import { setActiveRestaurant } from '../../../../state/actions';
-
+import MapIcon from '../../../../assets/icons/icon_map.png';
 const deviceWidth = Dimensions.get('window').width;
 
 class ListScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Lunch Tyme',
-  };
+  static navigationOptions = ({navigation}) => {
+    return {
+      title: 'Lunch Tyme',
+      headerRight: (
+        <Image source={ MapIcon } style={ { marginRight: 12 } } />
+      )
+    };
+  }
 
   constructor(props) {
     super(props);

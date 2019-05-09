@@ -10,6 +10,7 @@ export default StyleSheet.create({
   restaurantName: {
     color: '#FFFFFF',
     fontSize: 16,
+    fontWeight: '600',
     fontFamily: 'Avenir Next Demi Bold'
   },
   restaurantCategory: {
