@@ -71,7 +71,7 @@ class ListScreen extends React.Component {
     const { restaurants } = this.state;
     return (
       <View style={{ flex: 1 }}>
-        { restaurants.length > 1 && this.renderRestaurants() }
+        { restaurants.length >= 1 && this.renderRestaurants() }
       </View>
     );
   }

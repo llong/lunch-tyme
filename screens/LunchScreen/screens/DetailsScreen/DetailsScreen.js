@@ -40,9 +40,14 @@ class DetailsView extends React.Component {
           <Text style={ styles.restaurantCategory } >{ category }</Text>
         </View>
         <View style={ styles.detailsContainer }>
-          <Text style={ styles.detailsText }>{`${location.formattedAddress[0]}\n${location.formattedAddress[1]}`}</Text>
-          <Text style={ styles.detailsText }>{contact.formattedPhone }</Text>
-          <Text style={ styles.detailsText }>{`@${ contact.twitter }`}</Text>
+          { location && location.formattedAddress && (
+            <Text style={ styles.detailsText }>
+              {`${location.formattedAddress[0]}\n${location.formattedAddress[1]}`}
+              </Text>
+            )
+          }
+          { contact && contact.formattedPhone && <Text style={ styles.detailsText }>{contact.formattedPhone }</Text> }
+          { contact && contact.twitter && <Text style={ styles.detailsText }>{`@${ contact.twitter }`}</Text> }
         </View>
       </View>
     )
