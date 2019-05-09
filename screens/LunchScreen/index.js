@@ -1,11 +1,13 @@
 import { createStackNavigator } from 'react-navigation';
 import ListScreen from './screens/ListScreen';
 import MapScreen from './screens/MapScreen';
+import DetailsScreen from './screens/DetailsScreen';
 
 const LunchStack = createStackNavigator(
   {
       List: ListScreen,
       Map: MapScreen,
+      Details: DetailsScreen
   },
   {
       defaultNavigationOptions: {

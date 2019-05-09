@@ -1,6 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { TouchableOpacity, FlatList, View, Dimensions } from 'react-native';
+import { bindActionCreators } from 'redux';
 import ListItem from './components/ListItem';
+import { setActiveRestaurant } from '../../../../state/actions';
 
 const deviceWidth = Dimensions.get('window').width;
 
@@ -30,9 +33,15 @@ class ListScreen extends React.Component {
       })
   }
 
+  navigateToDetails = async (item) => {
+    const { navigation, setActiveRestaurant: doSetActiveRestaurant } = this.props;
+    await doSetActiveRestaurant(item);
+    navigation.navigate('Details');
+  }
+
   renderItem = ({item}) => {
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => this.navigateToDetails(item)}>
         <ListItem item={ item } />
       </TouchableOpacity>
     );
@@ -63,4 +72,10 @@ class ListScreen extends React.Component {
   }
 }
 
-export default ListScreen;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    setActiveRestaurant
+  }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(ListScreen);
