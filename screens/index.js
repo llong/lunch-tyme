@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image } from 'react-native';
 import LunchStack from './LunchScreen';
-import InternetsScreen from './LunchScreen';
+import InternetsScreen from './InternetsScreen';
 import { createBottomTabNavigator } from 'react-navigation';
 import LunchIcon from '../assets/icons/tab_lunch.png';
 import InternetsIcon from '../assets/icons/tab_internets.png';
