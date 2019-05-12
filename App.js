@@ -1,13 +1,14 @@
+// @flow
+
 import React from 'react';
+import { Provider } from 'react-redux';
 import { createAppContainer } from 'react-navigation';
 import TabNavigator from './screens';
-import { Provider } from 'react-redux';
 import store from './state/store';
 
-let Navigation = createAppContainer(TabNavigator);
+const Navigation = createAppContainer(TabNavigator);
 
-// Render the app container component with the provider around it
-export default class App extends React.Component {
+export default class App extends React.PureComponent {
   render() {
     return (
       <Provider store={store}>
