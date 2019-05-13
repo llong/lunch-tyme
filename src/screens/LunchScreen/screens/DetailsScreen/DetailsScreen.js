@@ -15,7 +15,7 @@ type Props = {
   }
 }
 
-class DetailsView extends React.Component<Props> {
+export class DetailsView extends React.Component<Props> {
   static navigationOptions = {
     title: 'Lunch Tyme',
     headerRight: (

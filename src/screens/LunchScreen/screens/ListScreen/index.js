@@ -1,3 +1,3 @@
-import ListScreen from './Listscreen';
+import ListView from './Listscreen';
 
-export default ListScreen;
+export default ListView;

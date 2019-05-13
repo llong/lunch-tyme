@@ -8,11 +8,10 @@ import {
   View,
   Dimensions,
   Image,
-  Alert,
 } from 'react-native';
 import { bindActionCreators } from 'redux';
 import ListItem from './components/ListItem';
-import { setActiveRestaurant } from '../../../../state/actions';
+import { setActiveRestaurant, fetchRestaurants } from '../../../../state/actions';
 import MapIcon from '../../../../assets/icons/icon_map.png';
 import styles from './styles';
 
@@ -22,13 +21,12 @@ type Props = {
   navigation: {
     navigate: (string) => mixed
   },
-  setActiveRestaurant: (Object) => Object
-}
-type State = {
+  setActiveRestaurant: (Object) => Object,
+  fetchRestaurants: () => Array,
   restaurants: Array<Object>
 }
 
-class ListScreen extends React.Component<Props, State> {
+export class ListScreen extends React.Component<Props> {
   static navigationOptions = {
     title: 'Lunch Tyme',
     headerRight: (
@@ -36,25 +34,9 @@ class ListScreen extends React.Component<Props, State> {
     ),
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      restaurants: [],
-    };
-  }
-
   componentDidMount() {
-    fetch('http://sandbox.bottlerocketapps.com/BR_iOS_CodingExam_2015_Server/restaurants.json')
-      .then((res) => {
-        if (res.status !== 200) {
-          Alert('problem fetching');
-          return;
-        }
-        res.json().then(data => this.setState({ restaurants: data.restaurants }));
-      })
-      .catch((err) => {
-        Alert('there was a problem ', err);
-      });
+    const { fetchRestaurants: doFetchRestaurants } = this.props;
+    doFetchRestaurants();
   }
 
   navigateToDetails = async (item) => {
@@ -72,7 +54,7 @@ class ListScreen extends React.Component<Props, State> {
   keyExtractor = item => item.name;
 
   renderRestaurants = () => {
-    const { restaurants } = this.state;
+    const { restaurants } = this.props;
     return (
       <FlatList
         contentContainerStyle={{ width: deviceWidth, backgroundColor: '#000000' }}
@@ -85,7 +67,7 @@ class ListScreen extends React.Component<Props, State> {
   }
 
   render() {
-    const { restaurants } = this.state;
+    const { restaurants } = this.props;
     return (
       <View style={{ flex: 1 }}>
         { restaurants.length >= 1 && this.renderRestaurants() }
@@ -94,10 +76,17 @@ class ListScreen extends React.Component<Props, State> {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    restaurants: state.restaurants,
+  };
+}
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     setActiveRestaurant,
+    fetchRestaurants,
   }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(ListScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(ListScreen);

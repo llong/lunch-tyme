@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import HeaderIcon from './HeaderIcon';
+import HeaderIcon from '../components/HeaderIcon';
 
 
 describe('HeaderIcon', () => {

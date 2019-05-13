@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DetailsScreen should render component 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "red",
+        "height": 180,
+      }
+    }
+  >
+    <MapView
+      initialRegion={
+        Object {
+          "latitude": 0.123,
+          "latitudeDelta": 0.0522,
+          "longitude": 0.321,
+          "longitudeDelta": 0.0421,
+        }
+      }
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "flex": 1,
+        }
+      }
+    >
+      <MapMarker
+        coordinate={
+          Object {
+            "latitude": 0.123,
+            "longitude": 0.321,
+          }
+        }
+        description="Fast Food"
+        stopPropagation={false}
+        title="McDonalds"
+      />
+    </MapView>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#34B379",
+        "height": 60,
+        "justifyContent": "center",
+        "paddingHorizontal": 12,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#FFFFFF",
+          "fontFamily": "Avenir Next Demi Bold",
+          "fontSize": 16,
+          "fontWeight": "600",
+        }
+      }
+    >
+      McDonalds
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "#FFFFFF",
+          "fontSize": 12,
+        }
+      }
+    >
+      Fast Food
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "paddingHorizontal": 12,
+        "paddingVertical": 16,
+      }
+    }
+  />
+</View>
+`;
