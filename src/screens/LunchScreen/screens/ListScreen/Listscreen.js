@@ -14,19 +14,25 @@ import { bindActionCreators } from 'redux';
 import ListItem from './components/ListItem';
 import { setActiveRestaurant } from '../../../../state/actions';
 import MapIcon from '../../../../assets/icons/icon_map.png';
+import styles from './styles';
 
 const deviceWidth = Dimensions.get('window').width;
 
 type Props = {
-  navigation: mixed,
-  setActiveRestaurant: () => Object
+  navigation: {
+    navigate: (string) => mixed
+  },
+  setActiveRestaurant: (Object) => Object
+}
+type State = {
+  restaurants: Array<Object>
 }
 
-class ListScreen extends React.Component<Props> {
+class ListScreen extends React.Component<Props, State> {
   static navigationOptions = {
     title: 'Lunch Tyme',
     headerRight: (
-      <Image source={MapIcon} style={{ marginRight: 12 }} />
+      <Image source={MapIcon} style={styles.headerIcon} />
     ),
   }
 

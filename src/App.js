@@ -8,7 +8,9 @@ import store from './state/store';
 
 const Navigation = createAppContainer(TabNavigator);
 
-export default class App extends React.PureComponent {
+type Props = {}
+
+export default class App extends React.PureComponent<Props> {
   render() {
     return (
       <Provider store={store}>

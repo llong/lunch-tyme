@@ -20,7 +20,7 @@ const TabNavigator = createBottomTabNavigator(
     Lunch: {
       screen: LunchStack,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }: String) => (
+        tabBarIcon: ({ tintColor }:string) => (
           <Image source={LunchIcon} style={[styles.tabIcon, { tintColor }]} />
         ),
       },
@@ -28,7 +28,7 @@ const TabNavigator = createBottomTabNavigator(
     Internets: {
       screen: InternetsScreen,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }: String) => (
+        tabBarIcon: ({ tintColor }:string) => (
           <Image source={InternetsIcon} style={[styles.tabIcon, { tintColor }]} />
         ),
       },

@@ -4,7 +4,7 @@ import React from 'react';
 import { TouchableOpacity, Image } from 'react-native';
 
 type Props = {
-  icon: String
+  icon: any
 }
 
 class HeaderIcon extends React.PureComponent<Props> {

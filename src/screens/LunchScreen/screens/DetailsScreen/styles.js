@@ -7,6 +7,10 @@ export default StyleSheet.create({
     paddingHorizontal: 12,
     justifyContent: 'center',
   },
+  headerIcon: {
+    height: 24,
+    resizeMode: 'contain',
+  },
   restaurantName: {
     color: '#FFFFFF',
     fontSize: 16,

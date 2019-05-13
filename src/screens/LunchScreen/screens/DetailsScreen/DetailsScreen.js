@@ -12,7 +12,6 @@ type Props = {
     name: String,
     category: String,
     location: Object,
-    contact: Object
   }
 }
 
@@ -20,7 +19,7 @@ class DetailsView extends React.Component<Props> {
   static navigationOptions = {
     title: 'Lunch Tyme',
     headerRight: (
-      <Image source={{ resource: MapIcon }} style={{ marginRight: 12 }} />
+      <Image source={MapIcon} style={styles.headerIcon} />
     ),
   }
 

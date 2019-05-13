@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderIcon should render component 1`] = `
+<TouchableOpacity
+  activeOpacity={0.2}
+>
+  <Image
+    style={
+      Object {
+        "marginRight": 16,
+      }
+    }
+  />
+</TouchableOpacity>
+`;

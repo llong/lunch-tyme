@@ -9,7 +9,7 @@ import RefreshIcon from '../../assets/icons/ic_webRefresh.png';
 import ForwardIcon from '../../assets/icons/ic_webForward.png';
 
 type Props = {
-  navigation: Object
+ navigation: Object,
 }
 
 class InternetsScreen extends React.Component<Props> {
@@ -24,7 +24,9 @@ class InternetsScreen extends React.Component<Props> {
     ),
   })
 
-  constructor(props) {
+  webview: any
+
+  constructor(props:Props) {
     super(props);
     this.webview = React.createRef();
   }
