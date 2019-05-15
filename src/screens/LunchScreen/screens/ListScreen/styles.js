@@ -6,4 +6,10 @@ export default StyleSheet.create({
     resizeMode: 'contain',
     marginLeft: 12,
   },
+  spinner: {
+    flex: 1,
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });

@@ -8,6 +8,7 @@ import {
   View,
   Dimensions,
   Image,
+  ActivityIndicator,
 } from 'react-native';
 import { bindActionCreators } from 'redux';
 import ListItem from './components/ListItem';
@@ -55,22 +56,26 @@ export class ListScreen extends React.Component<Props> {
 
   renderRestaurants = () => {
     const { restaurants } = this.props;
+    if (restaurants.length >= 1) {
+      return (
+        <FlatList
+          contentContainerStyle={{ width: deviceWidth, backgroundColor: '#000000' }}
+          data={restaurants}
+          renderItem={this.renderItem}
+          keyExtractor={this.keyExtractor}
+          bounces={false}
+        />
+      );
+    }
     return (
-      <FlatList
-        contentContainerStyle={{ width: deviceWidth, backgroundColor: '#000000' }}
-        data={restaurants}
-        renderItem={this.renderItem}
-        keyExtractor={this.keyExtractor}
-        bounces={false}
-      />
+      <ActivityIndicator size="large" style={styles.spinner} />
     );
   }
 
   render() {
-    const { restaurants } = this.props;
     return (
       <View style={{ flex: 1 }}>
-        { restaurants.length >= 1 && this.renderRestaurants() }
+        { this.renderRestaurants() }
       </View>
     );
   }
