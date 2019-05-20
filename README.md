@@ -1,4 +1,4 @@
-# Lunch Time Challenge
+# Lunch Tyme Challenge
 
 - To install clone repository and run npm i.
 - To run on iOS run $ npm run ios
