@@ -26,7 +26,6 @@ export default StyleSheet.create({
     resizeMode: 'cover',
     bottom: 0,
     position: 'absolute',
-    height: 180,
     width: deviceWidth,
   },
 });
