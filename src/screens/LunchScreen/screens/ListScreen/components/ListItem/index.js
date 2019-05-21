@@ -20,13 +20,13 @@ class ListItem extends React.PureComponent<Props> {
           <Text style={styles.restaurantName}>{ item.name }</Text>
           <Text style={styles.restaurantCategory}>{ item.category }</Text>
         </View>
-        <Image source={BackgroundOverlay} style={styles.backgroundOverlay} />
         <Image
           source={{ uri: item.backgroundImageURL }}
           style={{
             left: 0, right: 0, top: 0, bottom: 0, resizeMode: 'cover', position: 'absolute',
           }}
         />
+        <Image source={BackgroundOverlay} style={styles.backgroundOverlay} />
       </View>
     );
   }

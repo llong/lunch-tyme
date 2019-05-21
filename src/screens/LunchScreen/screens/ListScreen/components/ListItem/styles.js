@@ -21,9 +21,12 @@ export default StyleSheet.create({
     fontSize: 12,
   },
   backgroundOverlay: {
+    flex: 1,
     zIndex: 2,
-    width: deviceWidth,
-    position: 'absolute',
+    resizeMode: 'cover',
     bottom: 0,
+    position: 'absolute',
+    height: 180,
+    width: deviceWidth,
   },
 });
