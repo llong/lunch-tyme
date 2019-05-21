@@ -8,6 +8,12 @@ const props = {
   navigation: {
     navigate: navigateMock,
   },
+  restaurants: [
+    {
+      name: 'McDonalds',
+      category: 'fast food',
+    },
+  ],
 };
 
 describe('ListScreen', () => {
