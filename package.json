@@ -11,6 +11,7 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
+    "@mapbox/react-native-mapbox-gl": "https://github.com/nitaliano/react-native-mapbox-gl/tarball/master",
     "acorn": "^6.1.1",
     "react": "16.8.3",
     "react-dom": "^16.8.6",

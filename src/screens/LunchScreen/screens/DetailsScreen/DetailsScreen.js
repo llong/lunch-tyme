@@ -4,6 +4,7 @@ import React from 'react';
 import { View, Text, Image } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { connect } from 'react-redux';
+import Mapbox from '@mapbox/react-native-mapbox-gl';
 import styles from './styles';
 import MapIcon from '../../../../assets/icons/icon_map.png';
 
@@ -14,6 +15,8 @@ type Props = {
     location: Object,
   }
 }
+
+Mapbox.setAccessToken('pk.eyJ1IjoiaXp0ZWwiLCJhIjoiY2p2Z2ozZ3FzMDdsNDRhcDc2YWw4ZG96aCJ9.6VHDT7SBmiGl5O6-feEeeg');
 
 export class DetailsView extends React.Component<Props> {
   static navigationOptions = {
@@ -35,21 +38,21 @@ export class DetailsView extends React.Component<Props> {
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.mapContainer}>
-          <MapView
+          <Mapbox.MapView
             style={{ flex: 1, alignSelf: 'stretch' }}
-            initialRegion={{
-              latitude: location.lat,
-              longitude: location.lng,
-              latitudeDelta: 0.0522,
-              longitudeDelta: 0.0421,
-            }}
+            centerCoordinate={[location.lng, location.lat]}
+            zoomLevel={12}
           >
-            <Marker
-              coordinate={{ latitude: location.lat, longitude: location.lng }}
+            <Mapbox.PointAnnotation
+              id={name}
+              coordinate={[location.lng, location.lat]}
               title={name}
-              description={category}
-            />
-          </MapView>
+              snippet={category}
+              selected
+            >
+              <Mapbox.Callout title={name} />
+            </Mapbox.PointAnnotation>
+          </Mapbox.MapView>
         </View>
         <View style={styles.detailsHeader}>
           <Text style={styles.restaurantName}>{ name }</Text>
