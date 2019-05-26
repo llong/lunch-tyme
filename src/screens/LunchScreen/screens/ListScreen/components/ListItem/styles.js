@@ -27,5 +27,6 @@ export default StyleSheet.create({
     bottom: 0,
     position: 'absolute',
     width: deviceWidth,
+    height: 180,
   },
 });

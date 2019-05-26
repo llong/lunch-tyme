@@ -23,7 +23,7 @@ export default StyleSheet.create({
   },
   mapContainer: {
     height: 180,
-    backgroundColor: 'red',
+    backgroundColor: '#E6E6E6',
   },
   detailsContainer: {
     paddingVertical: 16,

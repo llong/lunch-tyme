@@ -1,29 +1,51 @@
 // @flow
 
 import React from 'react';
-import { View, Text, Image } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Mapbox from '@mapbox/react-native-mapbox-gl';
+import { setActiveRestaurant, fetchRestaurants } from '../../../../state/actions';
 import styles from './styles';
 import MapIcon from '../../../../assets/icons/icon_map.png';
 
 type Props = {
+  navigation: mixed,
   activeRestaurant: {
     name: String,
     category: String,
     location: Object,
-  }
+  },
+  setActiveRestaurant: () => Object,
 }
 
 Mapbox.setAccessToken('pk.eyJ1IjoiaXp0ZWwiLCJhIjoiY2p2Z2ozZ3FzMDdsNDRhcDc2YWw4ZG96aCJ9.6VHDT7SBmiGl5O6-feEeeg');
 
 export class DetailsView extends React.Component<Props> {
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     title: 'Lunch Tyme',
     headerRight: (
-      <Image source={MapIcon} style={styles.headerIcon} />
+      <TouchableOpacity onPress={navigation.getParam('navigateToMap')}>
+        <Image source={MapIcon} style={styles.headerIcon} />
+      </TouchableOpacity>
     ),
+  })
+
+  componentDidMount() {
+    const { navigation } = this.props;
+    navigation.setParams({
+      navigateToMap: this.navigateToMap,
+    });
+  }
+
+  navigateToMap = () => {
+    const { navigation, setActiveRestaurant: doSetActiveRestaurant } = this.props;
+    navigation.navigate('Map');
   }
 
   render() {
@@ -82,4 +104,11 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(DetailsView);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    setActiveRestaurant,
+    fetchRestaurants,
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DetailsView);

@@ -28,16 +28,28 @@ type Props = {
 }
 
 export class ListScreen extends React.Component<Props> {
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     title: 'Lunch Tyme',
     headerRight: (
-      <Image source={MapIcon} style={styles.headerIcon} />
+      <TouchableOpacity onPress={navigation.getParam('navigateToMap')}>
+        <Image source={MapIcon} style={styles.headerIcon} />
+      </TouchableOpacity>
     ),
-  }
+  })
 
   componentDidMount() {
-    const { fetchRestaurants: doFetchRestaurants } = this.props;
+    const { navigation, fetchRestaurants: doFetchRestaurants } = this.props;
     doFetchRestaurants();
+
+    navigation.setParams({
+      navigateToMap: this.navigateToMap,
+    });
+  }
+
+  navigateToMap = () => {
+    const { navigation, setActiveRestaurant: doSetActiveRestaurant } = this.props;
+    doSetActiveRestaurant(null);
+    navigation.navigate('Map');
   }
 
   navigateToDetails = async (item) => {
