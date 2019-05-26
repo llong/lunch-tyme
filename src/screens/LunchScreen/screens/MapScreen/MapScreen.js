@@ -1,7 +1,9 @@
 // @flow
 
 import React from 'react';
-import { View, Text, SafeAreaView, Image } from 'react-native';
+import {
+  View, Text, SafeAreaView, Image,
+} from 'react-native';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 import styles from './styles';
@@ -13,7 +15,7 @@ type Props = {
 }
 
 class MapScreen extends React.Component<Props> {
-  static navigationOptions = ({ navigation }) => ({
+  static navigationOptions = () => ({
     title: 'Map View',
   });
 

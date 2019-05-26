@@ -16,7 +16,7 @@ export default StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
     marginBottom: 24,
-  },  
+  },
   detailsText: {
     fontSize: 16,
     marginBottom: 26,
