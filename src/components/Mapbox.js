@@ -1,5 +1,6 @@
 import Mapbox from '@mapbox/react-native-mapbox-gl';
+import { MAPBOX_KEY } from 'react-native-dotenv';
 
-Mapbox.setAccessToken(process.env.MAPBOX_KEY);
+Mapbox.setAccessToken(MAPBOX_KEY);
 
 export default Mapbox;
