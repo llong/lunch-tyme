@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Mapbox from '@mapbox/react-native-mapbox-gl';
+import Mapbox from '../../../../components/Mapbox';
 import { setActiveRestaurant, fetchRestaurants } from '../../../../state/actions';
 import styles from './styles';
 import MapIcon from '../../../../assets/icons/icon_map.png';
@@ -21,10 +21,7 @@ type Props = {
     category: String,
     location: Object,
   },
-  setActiveRestaurant: () => Object,
 }
-
-Mapbox.setAccessToken('pk.eyJ1IjoiaXp0ZWwiLCJhIjoiY2p2Z2ozZ3FzMDdsNDRhcDc2YWw4ZG96aCJ9.6VHDT7SBmiGl5O6-feEeeg');
 
 export class DetailsView extends React.Component<Props> {
   static navigationOptions = ({ navigation }) => ({
@@ -44,7 +41,7 @@ export class DetailsView extends React.Component<Props> {
   }
 
   navigateToMap = () => {
-    const { navigation, setActiveRestaurant: doSetActiveRestaurant } = this.props;
+    const { navigation } = this.props;
     navigation.navigate('Map');
   }
 
@@ -70,7 +67,6 @@ export class DetailsView extends React.Component<Props> {
               coordinate={[location.lng, location.lat]}
               title={name}
               snippet={category}
-              selected
             >
               <Mapbox.Callout title={name} />
             </Mapbox.PointAnnotation>

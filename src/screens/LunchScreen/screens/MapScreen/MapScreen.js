@@ -1,11 +1,11 @@
 // @flow
 
 import React from 'react';
-import { View } from 'react-native';
-import Mapbox from '@mapbox/react-native-mapbox-gl';
+import { View, Text, SafeAreaView, Image } from 'react-native';
 import { connect } from 'react-redux';
-
-Mapbox.setAccessToken('pk.eyJ1IjoiaXp0ZWwiLCJhIjoiY2p2Z2ozZ3FzMDdsNDRhcDc2YWw4ZG96aCJ9.6VHDT7SBmiGl5O6-feEeeg');
+import Modal from 'react-native-modal';
+import styles from './styles';
+import Mapbox from '../../../../components/Mapbox';
 
 type Props = {
   restaurants: Array,
@@ -16,6 +16,43 @@ class MapScreen extends React.Component<Props> {
   static navigationOptions = ({ navigation }) => ({
     title: 'Map View',
   });
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      showModal: false,
+      selectedRestaurant: null,
+    };
+  }
+
+  renderModal = () => {
+    const { showModal, selectedRestaurant } = this.state;
+    if (selectedRestaurant) {
+      const { backgroundImageURL, location, contact } = selectedRestaurant;
+      return (
+        <Modal isVisible={showModal} onBackdropPress={() => this.setState({ showModal: false })}>
+          <SafeAreaView>
+            <View style={styles.container}>
+              <Image source={{ uri: backgroundImageURL }} style={styles.modalImage} />
+              <Text style={styles.modalTitle}>{selectedRestaurant.name}</Text>
+              { location && location.formattedAddress && (
+              <Text style={styles.detailsText}>
+                {`${location.formattedAddress[0]}\n${location.formattedAddress[1]}`}
+              </Text>
+              )}
+              { contact && contact.formattedPhone && (
+                <Text style={styles.detailsText}>{contact.formattedPhone }</Text>
+              )}
+              { contact && contact.twitter && (
+                <Text style={styles.detailsText}>{`@${contact.twitter}`}</Text>
+              )}
+            </View>
+          </SafeAreaView>
+        </Modal>
+      );
+    }
+    return false;
+  }
 
   renderAnnotations = () => {
     const { activeRestaurant, restaurants } = this.props;
@@ -41,6 +78,7 @@ class MapScreen extends React.Component<Props> {
         coordinate={[restaurant.location.lng, restaurant.location.lat]}
         title={restaurant.name}
         snippet={restaurant.category}
+        onSelected={() => this.selectRestaurant(restaurant)}
       >
         <Mapbox.Callout title={restaurant.name} />
       </Mapbox.PointAnnotation>
@@ -61,8 +99,11 @@ class MapScreen extends React.Component<Props> {
     return firstRestaurantCenterpoint;
   }
 
+  selectRestaurant = (restaurant) => {
+    this.setState({ selectedRestaurant: restaurant, showModal: true });
+  }
+
   render() {
-    const { activeRestaurant } = this.props;
     return (
       <View style={{ flex: 1 }}>
         <Mapbox.MapView
@@ -72,6 +113,7 @@ class MapScreen extends React.Component<Props> {
         >
           { this.renderAnnotations() }
         </Mapbox.MapView>
+        { this.renderModal() }
       </View>
     );
   }
