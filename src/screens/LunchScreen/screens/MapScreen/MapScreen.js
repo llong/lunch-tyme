@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {
-  View, Text, SafeAreaView, Image,
+  View, Text, SafeAreaView, Image, Button
 } from 'react-native';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
@@ -48,6 +48,7 @@ class MapScreen extends React.Component<Props> {
               { contact && contact.twitter && (
                 <Text style={styles.detailsText}>{`@${contact.twitter}`}</Text>
               )}
+              <Button title="Close" onPress={() => this.setState({ showModal: false })} />
             </View>
           </SafeAreaView>
         </Modal>
