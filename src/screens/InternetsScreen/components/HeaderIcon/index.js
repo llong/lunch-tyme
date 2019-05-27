@@ -12,7 +12,7 @@ class HeaderIcon extends React.PureComponent<Props> {
     const { icon, ...rest } = this.props;
     return (
       <TouchableOpacity {...rest}>
-        <Image source={icon} style={{ marginRight: 16, height: 24, resizeMode: 'contain' }} />
+        <Image source={icon} style={{ marginRight: 16, height: 24, width: 24, resizeMode: 'contain' }} />
       </TouchableOpacity>
     );
   }
